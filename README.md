@@ -1,6 +1,6 @@
 # SpanishConj
 
-## A basic DB with a basic API to access Spanish verbs, their english translation, and their conjugations.
+## A basic DB with a basic API to access 11,500 Spanish verbs, their english translation, and their conjugations.
 
 - Run npm i to install dependencies
 - npm run server to start server
