@@ -1,16 +1,14 @@
 const express = require('express');
 
-const db = require('./data/db-config.js')
+const db = require('./data/db-config.js');
 
 const server = express();
 
 server.use(express.json());
 
 function find() {
-    return db.select('*').from('verbs');
-	// return db('verbs');
+	return db.select('*').from('verbs');
 }
-
 
 server.get('/', (req, res) => {
 	find()
