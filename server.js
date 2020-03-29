@@ -1,23 +1,13 @@
 const express = require('express');
-
-const db = require('./data/db-config.js');
+const cors = require('cors');
 
 const server = express();
 
 server.use(express.json());
+server.use(cors());
 
-function find() {
-	return db.select('*').from('verbs');
-}
+const tenseRouter = require('./tenses/tenses.router');
 
-server.get('/', (req, res) => {
-	find()
-		.then(verbs => {
-			res.status(200).json(verbs);
-		})
-		.catch(err => {
-			res.status(500).json({ message: 'Failed to get verbs' });
-		});
-});
+server.use('/api/tense', tenseRouter);
 
 module.exports = server;
