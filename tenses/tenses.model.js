@@ -20,8 +20,34 @@ function findIndicativePast() {
 		.where('tense', 'Pretérito');
 }
 
+function findIndicativePastImperfect() {
+	return db
+		.select('*')
+		.from('verbs')
+		.where('mood', 'Indicativo')
+		.where('tense', 'Imperfecto');
+}
+
+function findIndicativePerfectPresent() {
+	return db
+		.select('*')
+		.from('verbs')
+		.where('mood', 'Indicativo')
+		.where('tense', 'Presente perfecto');
+}
+
+function findIndicativeFuturo() {
+	return db
+		.select('*')
+		.from('verbs')
+		.where('mood', 'Indicativo')
+		.where('tense', 'Futuro');
+}
 module.exports = {
 	find,
 	findIndicativePresent,
-	findIndicativePast
+	findIndicativePast,
+	findIndicativePastImperfect,
+	findIndicativePerfectPresent,
+	findIndicativeFuturo
 };
