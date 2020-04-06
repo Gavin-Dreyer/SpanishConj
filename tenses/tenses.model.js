@@ -43,11 +43,55 @@ function findIndicativeFuturo() {
 		.where('mood', 'Indicativo')
 		.where('tense', 'Futuro');
 }
+
+function findSubjunctivePresent() {
+	return db
+		.select('*')
+		.from('verbs')
+		.where('mood', 'Subjuntivo')
+		.where('tense', 'Presente');
+}
+
+function findSubjunctivePast() {
+	return db
+		.select('*')
+		.from('verbs')
+		.where('mood', 'Subjuntivo')
+		.where('tense', 'Pretérito');
+}
+
+function findSubjunctivePastImperfect() {
+	return db
+		.select('*')
+		.from('verbs')
+		.where('mood', 'Subjuntivo')
+		.where('tense', 'Imperfecto');
+}
+
+function findSubjunctivePerfectPresent() {
+	return db
+		.select('*')
+		.from('verbs')
+		.where('mood', 'Subjuntivo')
+		.where('tense', 'Presente perfecto');
+}
+
+function findSubjunctiveFuturo() {
+	return db
+		.select('*')
+		.from('verbs')
+		.where('mood', 'Subjuntivo')
+		.where('tense', 'Futuro');
+}
 module.exports = {
 	find,
 	findIndicativePresent,
 	findIndicativePast,
 	findIndicativePastImperfect,
 	findIndicativePerfectPresent,
-	findIndicativeFuturo
+	findIndicativeFuturo,
+	findSubjunctivePresent,
+	findSubjunctivePastImperfect,
+	findSubjunctivePerfectPresent,
+	findSubjunctiveFuturo
 };
