@@ -2,10 +2,8 @@ const router = require('express').Router();
 words = require('./words.model');
 
 router.post('/', (req, res) => {
-	let word = req.body.word;
-
 	words
-		.findWord(word)
+		.findWord(req.body.word)
 		.then(word => {
 			res.status(200).json(word);
 		})
