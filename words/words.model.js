@@ -6,6 +6,17 @@ function findWord(word) {
 		.where('spanishVerb', word);
 }
 
+async function findReflexiveVerbs() {
+	let verbs = await db('verbs').select('*');
+
+	return verbs.filter(word => {
+		if (word.spanishVerb.slice(-2) === 'se') {
+			return word;
+		}
+	});
+}
+
 module.exports = {
-	findWord
+	findWord,
+	findReflexiveVerbs
 };
