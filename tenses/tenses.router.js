@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const { authenticate } = require('../auth.helper.js');
 tense = require('./tenses.model');
 
-router.get('/', (req, res) => {
+router.get('/', authenticate, (req, res) => {
 	tense
 		.find()
 		.then(verbs => {

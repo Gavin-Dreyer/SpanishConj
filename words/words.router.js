@@ -10,7 +10,7 @@ router.get('/reflexive', (req, res) => {
 		.catch(err => console.log(err));
 });
 
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
 	words
 		.findWord(req.body.word)
 		.then(word => {

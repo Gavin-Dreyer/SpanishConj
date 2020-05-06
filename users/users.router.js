@@ -3,6 +3,15 @@ const bcrypt = require('bcryptjs');
 const { generateToken } = require('../auth.helper.js');
 users = require('./users.model');
 
+router.get('/', async (req, res) => {
+	console.log(req.headers.authorization);
+	try {
+		res.status(500).json({ message: 'Token error' });
+	} catch (err) {
+		res.status(500).json({ message: 'Token error' });
+	}
+});
+
 router.post('/', async (req, res) => {
 	try {
 		let { username, password } = req.body;
