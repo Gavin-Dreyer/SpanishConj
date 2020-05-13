@@ -10,10 +10,6 @@ const tenseRouter = require('./tenses/tenses.router');
 const wordsRouter = require('./words/words.router');
 const userRouter = require('./users/users.router');
 
-server.get('/', (req, res) => {
-	res.status(200).json({ message: 'working' });
-});
-
 server.use('/api/tense', tenseRouter);
 server.use('/api/words', wordsRouter);
 server.use('/api/user', userRouter);
