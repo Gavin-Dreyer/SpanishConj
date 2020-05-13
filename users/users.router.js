@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
-const { generateToken } = require('../auth.helper.js');
+const { generateToken, authenticate } = require('../auth.helper.js');
 users = require('./users.model');
+const jwt = require('jsonwebtoken');
+const secrets = process.env.JWT_SECRET;
 
 router.post('/', async (req, res) => {
 	try {
@@ -30,7 +32,7 @@ router.post('/', async (req, res) => {
 			res.status(403).json({ message: 'Username already exists' });
 		}
 	} catch (err) {
-		res.status(500).json({ message: 'Error when creating account', err });
+		res.status(500).json({ ...err, message: 'Error when creating account' });
 	}
 });
 
@@ -58,7 +60,36 @@ router.post('/login', async (req, res) => {
 			res.status(401).json({ message: 'Invalid credentials' });
 		}
 	} catch (err) {
-		res.status(400).json({ message: 'Error when logging in' }, err);
+		res.status(400).json({ ...err, message: 'Error when logging in' });
+	}
+});
+
+router.put('/points', authenticate, async (req, res) => {
+	let token = req.headers.authorization;
+	let points = {
+		correct: req.body.correct,
+		incorrect: req.body.incorrect,
+		total: req.body.total
+	};
+
+	try {
+		jwt.verify(token, secrets, (err, decodedToken) => {
+			if (err) {
+				res.status(401).json({ message: 'Invalid token' });
+			} else {
+				token = decodedToken;
+			}
+		});
+
+		let userPoints = await users.updatePoints(token.id, points);
+
+		res.status(200).json({
+			correct: userPoints.correct,
+			incorrect: userPoints.incorrect,
+			total: userPoints.total
+		});
+	} catch (err) {
+		res.status(400).json({ ...err, message: 'Error updating points' });
 	}
 });
 
