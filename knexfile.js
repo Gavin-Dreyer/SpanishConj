@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
 	development: {
 		client: 'sqlite3',
@@ -35,18 +37,12 @@ module.exports = {
 	},
 
 	production: {
-		client: 'postgresql',
+		client: 'pg',
 		connection: {
-			database: 'my_db',
-			user: 'username',
-			password: 'password'
-		},
-		pool: {
-			min: 2,
-			max: 10
+			database: process.env.DATABASE_URL
 		},
 		migrations: {
-			tableName: 'knex_migrations'
+			directory: './data/migrations'
 		}
 	}
 };
