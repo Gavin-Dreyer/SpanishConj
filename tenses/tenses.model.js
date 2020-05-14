@@ -14,7 +14,7 @@ async function findIndicativePresent() {
 	return verbs.map(verb => {
 		Object.keys(verb).forEach(k => {
 			if (verb[k] === null) {
-				verb[k] = '';
+				delete verb[k];
 			}
 		});
 
