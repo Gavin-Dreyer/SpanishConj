@@ -13,7 +13,7 @@ router.get('/', authenticate, (req, res) => {
 		});
 });
 
-router.get('/presentIndicative', (req, res) => {
+router.get('/Indicativepresent', (req, res) => {
 	tense
 		.findIndicativePresent()
 		.then(verbs => {
@@ -24,7 +24,7 @@ router.get('/presentIndicative', (req, res) => {
 		});
 });
 
-router.get('/pastIndicative', (req, res) => {
+router.get('/Indicativepast', (req, res) => {
 	tense
 		.findIndicativePast()
 		.then(verbs => {

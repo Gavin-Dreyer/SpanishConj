@@ -2,21 +2,14 @@ require('dotenv').config();
 
 module.exports = {
 	development: {
-		client: 'sqlite3',
+		client: 'pg',
+		useNullAsDefault: false,
 		connection: {
-			filename: './data/verbs.db3'
+			database: process.env.DB_DEV_DATABASE,
+			user: process.env.DB_DEV_USER
 		},
-		useNullAsDefault: true,
 		migrations: {
 			directory: './data/migrations'
-		},
-		seeds: {
-			directory: './data/seeds'
-		},
-		pool: {
-			afterCreate: (conn, done) => {
-				conn.run('PRAGMA foreign_keys = ON', done);
-			}
 		}
 	},
 

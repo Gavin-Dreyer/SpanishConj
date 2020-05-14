@@ -4,12 +4,22 @@ function find() {
 	return db.select('*').from('verbs');
 }
 
-function findIndicativePresent() {
-	return db
+async function findIndicativePresent() {
+	let verbs = await db
 		.select('*')
 		.from('verbs')
 		.where('mood', 'Indicativo')
 		.where('tense', 'Presente');
+
+	return verbs.map(verb => {
+		Object.keys(verb).forEach(k => {
+			if (verb[k] === null) {
+				verb[k] = '';
+			}
+		});
+
+		return verb;
+	});
 }
 
 function findIndicativePast() {
