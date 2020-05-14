@@ -1,6 +1,8 @@
 # SpanishConj
 
-## An API to access 637 Spanish verbs, their english translation, and their conjugations.
+## An API to access 637 Spanish verbs.
+
+### There are nearly 12,000 different moods and tenses, their english translation, and their conjugations.
 
 - Run npm i to install dependencies
 - npm run server to start server
