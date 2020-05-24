@@ -4,6 +4,23 @@ function find() {
 	return db.select('*').from('verbs');
 }
 
+async function findTenses(tenses) {
+	let verbs = [];
+
+	for (let i = 0; i < tenses.length; i++) {
+		let tense = tenses[i];
+		let t = await db
+			.select('*')
+			.from('verbs')
+			.where({ tense })
+			.where('mood', 'Indicativo');
+
+		verbs.push(t);
+	}
+
+	return verbs;
+}
+
 async function findIndicativePresent() {
 	let verbs = await db
 		.select('*')
@@ -95,6 +112,7 @@ function findSubjunctiveFuturo() {
 }
 module.exports = {
 	find,
+	findTenses,
 	findIndicativePresent,
 	findIndicativePast,
 	findIndicativePastImperfect,

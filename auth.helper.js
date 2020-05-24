@@ -15,7 +15,6 @@ const generateToken = user => {
 
 function authenticate(req, res, next) {
 	const token = req.get('Authorization');
-
 	if (token) {
 		jwt.verify(token, secrets, (err, decodedToken) => {
 			if (err) {

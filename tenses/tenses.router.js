@@ -2,9 +2,20 @@ const router = require('express').Router();
 const { authenticate } = require('../auth.helper.js');
 tense = require('./tenses.model');
 
-router.get('/', authenticate, (req, res) => {
+router.get('/', (req, res) => {
 	tense
 		.find()
+		.then(verbs => {
+			res.status(200).json(verbs);
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to get verbs' });
+		});
+});
+
+router.get('/multiTense', (req, res) => {
+	tense
+		.findTenses(req.body.tenses)
 		.then(verbs => {
 			res.status(200).json(verbs);
 		})
