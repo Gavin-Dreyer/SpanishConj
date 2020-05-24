@@ -18,7 +18,15 @@ async function findTenses(tenses) {
 		verbs = [...verbs, ...t];
 	}
 
-	return verbs;
+	return verbs.map(verb => {
+		Object.keys(verb).forEach(k => {
+			if (verb[k] === null) {
+				delete verb[k];
+			}
+		});
+
+		return verb;
+	});
 }
 
 async function findIndicativePresent() {
