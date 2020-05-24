@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.get('/multiTense', (req, res) => {
 	tense
-		.findTenses(req.body.tenses)
+		.findTenses(req.query.tenses)
 		.then(verbs => {
 			res.status(200).json(verbs);
 		})

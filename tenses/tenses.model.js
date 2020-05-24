@@ -15,7 +15,7 @@ async function findTenses(tenses) {
 			.where({ tense })
 			.where('mood', 'Indicativo');
 
-		verbs.push(t);
+		verbs = [...verbs, ...t];
 	}
 
 	return verbs;
