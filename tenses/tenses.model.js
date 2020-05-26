@@ -38,7 +38,7 @@ async function findIndicativePresent() {
 		.where('mood', 'Indicativo')
 		.where('tense', 'Presente');
 
-	return verbs.map(verb => {
+	return verbs.map((verb, index) => {
 		Object.keys(verb).forEach(k => {
 			if (verb[k] === null) {
 				delete verb[k];
