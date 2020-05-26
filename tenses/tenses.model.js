@@ -18,12 +18,14 @@ async function findTenses(tenses) {
 		verbs = [...verbs, ...t];
 	}
 
-	return verbs.map(verb => {
+	return verbs.map((verb, index) => {
 		Object.keys(verb).forEach(k => {
 			if (verb[k] === null) {
 				delete verb[k];
 			}
 		});
+
+		verb.id = index;
 
 		return verb;
 	});
@@ -42,6 +44,8 @@ async function findIndicativePresent() {
 				delete verb[k];
 			}
 		});
+
+		verb.id = index;
 
 		return verb;
 	});
